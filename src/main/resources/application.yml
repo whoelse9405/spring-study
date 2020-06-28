@@ -1,0 +1,55 @@
+
+server:
+  port: 8080
+  address: 0.0.0.0
+  tomcat:
+    uri-encoding: UTF-8
+
+logging:
+  level:
+    ROOT: WARN
+    com.asuscomm.whoelse9405: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+
+spring:
+  application:
+    name: study
+  mvc.favicon.enabled: false
+  profiles:
+    active: local
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  datasource:
+    initialization-mode: never
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    tomcat:
+      min-idle: 0
+      max-idle: 110
+      max-active: 110
+      validation-query: SELECT 1
+      time-between-eviction-runs-millis: 30000
+      test-on-borrow: true
+      test-while-idle: true
+      min-evictable-idle-time-millis: -1
+      num-tests-per-eviction-run: 5
+      max-wait: 3000
+
+# Local 환경
+---
+spring:
+  profiles: local
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  datasource:
+    hikari:
+      jdbc-url: jdbc:mysql://whoelse9405.asuscomm.com/study
+      username: study
+      password: qwer1234
+      driver-class-name: com.mysql.cj.jdbc.Driver
